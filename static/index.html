@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -677,7 +677,7 @@ footer {
     <aside class="sidebar">
 
         <div class="brand">
-            <div class="brand-icon">âœ¦</div>
+            <div class="brand-icon">&#10022;</div>
             <div>
                 <h2>QELVORI</h2>
                 <small>RESEARCH INTELLIGENCE</small>
@@ -687,24 +687,24 @@ footer {
         <div class="nav-label">WORKSPACE</div>
 
         <div class="nav-item active" onclick="showPage('dashboard',this)">
-            <span class="nav-icon">âŒ‚</span>
+            <span class="nav-icon">&#10022;</span>
             <span>Dashboard</span>
         </div>
 
         <div class="nav-item" onclick="showPage('history',this)">
-            <span class="nav-icon">â—·</span>
+            <span class="nav-icon">&#10022;</span>
             <span>Research History</span>
         </div>
 
         <div class="nav-item" onclick="showPage('library',this)">
-            <span class="nav-icon">â–¤</span>
+            <span class="nav-icon">&#10022;</span>
             <span>Report Library</span>
         </div>
 
         <div class="sidebar-bottom">
             <strong>AI ENGINE</strong>
             <p>Powered by local Qwen3:4B intelligence.</p>
-            <div class="system-status">â— SYSTEM READY</div>
+            <div class="system-status">&#10022; SYSTEM READY</div>
         </div>
 
     </aside>
@@ -721,7 +721,7 @@ footer {
             </div>
 
             <div class="top-right">
-                <div class="local-badge">â— LOCAL AI ACTIVE</div>
+                <div class="local-badge">&#10022; LOCAL AI ACTIVE</div>
                 <div class="avatar">N</div>
             </div>
 
@@ -734,7 +734,7 @@ footer {
 
             <div class="hero">
 
-                <div class="eyebrow">âœ¦ INTELLIGENCE BEYOND SEARCH</div>
+                <div class="eyebrow">&#10022; INTELLIGENCE BEYOND SEARCH</div>
 
                 <h1>
                     Discover more.<br>
@@ -795,7 +795,7 @@ footer {
                         id="researchButton"
                         onclick="startResearch()"
                     >
-                        âœ¦ Start Research
+                        &#10022; Start Research
                     </button>
 
                 </div>
@@ -863,7 +863,7 @@ footer {
 
                 <div class="result-card">
 
-                    <h2>âœ¦ AI Research Analysis</h2>
+                    <h2>&#10022; AI Research Analysis</h2>
 
                     <div class="analysis" id="analysis"></div>
 
@@ -872,7 +872,7 @@ footer {
 
                 <div class="result-card">
 
-                    <h2>â—ˆ Research Sources</h2>
+                    <h2>&#10022; Research Sources</h2>
 
                     <div class="source-list" id="sources"></div>
 
@@ -881,7 +881,7 @@ footer {
 
                 <div class="result-card">
 
-                    <h2>â–¤ Research Report</h2>
+                    <h2>&#10022; Research Report</h2>
 
                     <div class="pdf-box">
 
@@ -892,7 +892,7 @@ footer {
                             id="downloadButton"
                             href="#"
                         >
-                            â†“ Download PDF
+                            &#10022; Download PDF
                         </a>
 
                     </div>
@@ -927,7 +927,7 @@ footer {
 
 
         <footer>
-            QELVORI RESEARCH INTELLIGENCE Â· POWERED BY LOCAL AI Â· VERSION 2.0
+            QELVORI RESEARCH INTELLIGENCE &middot; POWERED BY LOCAL AI &middot; VERSION 2.0
         </footer>
 
     </main>
@@ -1200,7 +1200,7 @@ async function startResearch() {
             const link = document.createElement("a");
 
             link.className = "source-card";
-            link.textContent = "â†— " + source.title;
+            link.textContent = "&#10022; " + source.title;
             link.href = source.url;
             link.target = "_blank";
             link.rel = "noopener noreferrer";
@@ -1248,7 +1248,7 @@ async function startResearch() {
     finally {
 
         button.disabled = false;
-        button.textContent = "âœ¦ Start Research";
+        button.textContent = "&#10022; Start Research";
 
     }
 
@@ -1257,13 +1257,13 @@ async function startResearch() {
 function saveHistory(item) {
 
     let history = JSON.parse(
-        localStorage.getItem("nexus_history") || "[]"
+        localStorage.getItem("QELVORI_history") || "[]"
     );
 
     history.unshift(item);
 
     localStorage.setItem(
-        "nexus_history",
+        "QELVORI_history",
         JSON.stringify(history.slice(0, 50))
     );
 
@@ -1273,7 +1273,7 @@ function saveHistory(item) {
 function loadHistory() {
 
     const history = JSON.parse(
-        localStorage.getItem("nexus_history") || "[]"
+        localStorage.getItem("QELVORI_history") || "[]"
     );
 
     const container = document.getElementById("historyList");
@@ -1304,7 +1304,7 @@ function loadHistory() {
         const details = document.createElement("small");
 
         details.textContent =
-            item.date + " Â· " + item.source_count + " sources";
+            item.date + " &middot; " + item.source_count + " sources";
 
         card.appendChild(title);
         card.appendChild(details);
@@ -1353,11 +1353,11 @@ async function loadReports() {
             item.className = "report-item";
 
             const name = document.createElement("span");
-            name.textContent = "â–¤ " + filename;
+            name.textContent = "&#10022; " + filename;
 
             const link = document.createElement("a");
 
-            link.textContent = "Download â†“";
+            link.textContent = "Download &#10022;";
 
             link.href =
                 "/api/reports/" + encodeURIComponent(filename);
@@ -1379,11 +1379,11 @@ async function loadReports() {
 
 }
 
-
+s
 function updateStats() {
 
     const history = JSON.parse(
-        localStorage.getItem("nexus_history") || "[]"
+        localStorage.getItem("QELVORI_history") || "[]"
     );
 
     const sourceTotal = history.reduce(

@@ -153,3 +153,8 @@ QELVORI aims to bring automated research, AI-powered analysis, evidence checking
 ---
 
 **QELVORI — Turning information into structured intelligence.**
+## Dashboard Preview
+
+<p align="center">
+  <img src="assets/dashboard.png" alt="QELVORI Dashboard" width="100%">
+</p>
