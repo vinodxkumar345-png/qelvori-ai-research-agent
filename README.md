@@ -1,4 +1,11 @@
-﻿# QELVORI — AI Research Intelligence
+﻿<p align="center">
+  <img src="assets/qelvori-banner.png" alt="QELVORI AI Research Intelligence" width="100%">
+</p>
+
+<br>
+
+
+# QELVORI — AI Research Intelligence
 
 An AI-powered research intelligence platform that automates information discovery, content extraction, analysis, evidence verification, and PDF report generation.
 
