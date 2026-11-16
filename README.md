@@ -1,33 +1,64 @@
-﻿# QELVORI â€“ AI Research Intelligence
+﻿# QELVORI — AI Research Intelligence
 
-QELVORI is an AI-powered research assistant built with Python and FastAPI. It automates the research workflow by collecting information from online sources, extracting content, analyzing findings with a locally hosted language model, and generating structured PDF reports.
+An AI-powered research intelligence platform that automates information discovery, content extraction, analysis, evidence verification, and PDF report generation.
 
-## Features
+## Overview
 
-- **Automated Research:** Searches multiple sources for information related to a given topic.
-- **Content Extraction:** Extracts relevant content from supported web pages and PDF documents.
-- **AI-Powered Analysis:** Uses the Qwen 3 model through Ollama to analyze collected information.
-- **Evidence Verification:** Performs AI-assisted checks on claims and supporting source material.
-- **Citation Validation:** Checks whether cited source IDs correspond to collected sources.
-- **PDF Report Generation:** Generates downloadable research reports.
-- **Web Dashboard:** Provides a dark-themed interface to submit topics and monitor research progress.
-- **REST API:** Exposes research functionality through FastAPI endpoints.
+QELVORI is built with Python and FastAPI. It uses locally hosted AI models through Ollama to analyze research material and produce structured reports.
+
+## Key Features
+
+- **Automated Research:** Searches multiple online sources for relevant information.
+- **Content Extraction:** Extracts information from web pages and PDF documents.
+- **AI-Powered Analysis:** Uses Qwen 3 through Ollama.
+- **Evidence Verification:** Performs AI-assisted checks on claims and supporting sources.
+- **Citation Validation:** Validates references against collected source IDs.
+- **PDF Generation:** Produces downloadable research reports.
+- **Interactive Dashboard:** Monitors research progress through a web interface.
+- **REST API:** Provides endpoints for research tasks and report access.
 
 ## Technology Stack
 
-- Python
-- FastAPI
-- Ollama
-- Qwen 3 (4B)
-- HTML, CSS and JavaScript
-- ReportLab
-- PyMuPDF
-- BeautifulSoup
-- Pytest
+| Component | Technology |
+|---|---|
+| Backend | Python, FastAPI |
+| AI Runtime | Ollama |
+| Language Model | Qwen 3 (4B) |
+| Frontend | HTML, CSS, JavaScript |
+| PDF Processing | PyMuPDF, ReportLab |
+| Web Extraction | BeautifulSoup |
+| Testing | Pytest |
+
+## Architecture
+
+```text
+QELVORI
+│
+├── agents/
+│   └── research_agent.py
+│
+├── core/
+│   ├── ai_analyzer.py
+│   ├── evidence_verifier.py
+│   └── report_generator.py
+│
+├── tools/
+│   ├── search_tool.py
+│   └── content_extractor.py
+│
+├── static/
+│   └── index.html
+│
+├── tests/
+│   ├── pytest.ini
+│   └── test_api.py
+│
+├── main.py
+├── requirements.txt
+└── README.md
+```
 
 ## Requirements
-
-Before running QELVORI, install:
 
 - Python 3.10 or later
 - Git
@@ -38,12 +69,10 @@ Before running QELVORI, install:
 
 ### 1. Clone the repository
 
-```bash
-git clone https://github.com/YOUR_USERNAME/qelvori-ai-research-agent.git
+```powershell
+git clone https://github.com/vinodxkumar345-png/qelvori-ai-research-agent.git
 cd qelvori-ai-research-agent
 ```
-
-Replace `YOUR_USERNAME` with your GitHub username.
 
 ### 2. Create a virtual environment
 
@@ -51,7 +80,7 @@ Replace `YOUR_USERNAME` with your GitHub username.
 py -m venv .venv
 ```
 
-### 3. Activate the virtual environment
+### 3. Activate the environment
 
 ```powershell
 .\.venv\Scripts\Activate.ps1
@@ -63,31 +92,29 @@ py -m venv .venv
 py -m pip install -r requirements.txt
 ```
 
-### 5. Set up Ollama
+### 5. Set up the AI model
 
-Install Ollama and download the required model:
+Install Ollama, then run:
 
 ```powershell
 ollama pull qwen3:4b
 ```
 
-Make sure the Ollama service is running before starting a research task.
+Ensure Ollama is running before starting a research task.
 
-### 6. Start QELVORI
+### 6. Start the application
 
 ```powershell
 py -m uvicorn main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-## Access the Application
+## Access QELVORI
 
-Once the server starts, open:
-
-**Dashboard:** http://127.0.0.1:8000
-
-**API Documentation:** http://127.0.0.1:8000/docs
-
-**Health Check:** http://127.0.0.1:8000/health
+| Service | Address |
+|---|---|
+| Dashboard | http://127.0.0.1:8000 |
+| API Documentation | http://127.0.0.1:8000/docs |
+| Health Check | http://127.0.0.1:8000/health |
 
 ## API Endpoints
 
@@ -99,37 +126,7 @@ Once the server starts, open:
 | GET | `/api/research/{job_id}` | Retrieve research task status |
 | GET | `/api/reports` | Retrieve available reports |
 
-## Project Structure
-
-```text
-qelvori-ai-research-agent/
-â”‚
-â”œâ”€â”€ agents/
-â”‚   â””â”€â”€ research_agent.py
-â”‚
-â”œâ”€â”€ core/
-â”‚   â”œâ”€â”€ ai_analyzer.py
-â”‚   â”œâ”€â”€ evidence_verifier.py
-â”‚   â””â”€â”€ report_generator.py
-â”‚
-â”œâ”€â”€ tools/
-â”‚   â”œâ”€â”€ search_tool.py
-â”‚   â””â”€â”€ content_extractor.py
-â”‚
-â”œâ”€â”€ static/
-â”‚   â””â”€â”€ index.html
-â”‚
-â”œâ”€â”€ tests/
-â”‚
-â”œâ”€â”€ main.py
-â”œâ”€â”€ requirements.txt
-â”œâ”€â”€ .gitignore
-â””â”€â”€ README.md
-```
-
 ## Running Tests
-
-Run the automated test suite:
 
 ```powershell
 py -m pytest -q
@@ -138,10 +135,14 @@ py -m pytest -q
 ## Important Notes
 
 - QELVORI uses a locally hosted Ollama model for AI analysis.
-- Ollama must be installed and running for AI-powered research features.
-- AI-assisted evidence verification does not guarantee that every claim is factually correct.
-- Always review generated research and its original sources before relying on the findings.
+- Ollama must be running for AI-powered research features.
+- Evidence verification is AI-assisted and does not guarantee complete factual accuracy.
+- Always review generated findings against their original sources.
 
-## Project Goal
+## Project Vision
 
-QELVORI aims to simplify research by combining automated information retrieval, AI-powered analysis, evidence checking, and structured report generation in one application.
+QELVORI aims to bring automated research, AI-powered analysis, evidence checking, and structured reporting together in one platform.
+
+---
+
+**QELVORI — Turning information into structured intelligence.**
