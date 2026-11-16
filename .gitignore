@@ -1,0 +1,49 @@
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local databases and vector stores
+chroma_db/
+*.sqlite3
+*.db
+
+# Generated reports
+reports/*.pdf
+
+# Logs
+*.log
+logs/
+
+# Build files
+build/
+dist/
+*.egg-info/
+
+# Editor and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.dbs
+
+# Local backup and diagnostic scripts
+agents/research_agent_backup.py
+tests/agents/
+core/test_ollama_json.py
+test_ollama_json.py
+run_evidence_verifier.py

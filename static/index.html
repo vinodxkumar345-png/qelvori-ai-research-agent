@@ -1,0 +1,1411 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>QELVORI | AI Research Intelligence</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root {
+    --bg: #080b14;
+    --panel: #101625;
+    --panel2: #141d30;
+    --border: rgba(148,163,184,0.13);
+    --blue: #6c8cff;
+    --cyan: #42d9e8;
+    --text: #edf2ff;
+    --muted: #8793ab;
+    --green: #42d99b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    width: 650px;
+    height: 650px;
+    background: #314fc4;
+    filter: blur(180px);
+    opacity: 0.13;
+    top: -300px;
+    right: -150px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    background: #087e9d;
+    filter: blur(180px);
+    opacity: 0.10;
+    bottom: -300px;
+    left: -150px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+button, input {
+    font-family: inherit;
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar {
+    width: 250px;
+    background: rgba(12,17,29,0.88);
+    border-right: 1px solid var(--border);
+    padding: 28px 19px;
+    position: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    z-index: 10;
+    backdrop-filter: blur(20px);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 50px;
+    padding-left: 8px;
+}
+
+.brand-icon {
+    width: 39px;
+    height: 39px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    background: linear-gradient(135deg,#6489ff,#37cfe4);
+    box-shadow: 0 0 25px #527cff55;
+}
+
+.brand h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 19px;
+    letter-spacing: 1px;
+}
+
+.brand small {
+    display: block;
+    color: var(--muted);
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-top: 3px;
+}
+
+.nav-label {
+    color: #65718a;
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    padding: 0 12px;
+    margin-bottom: 13px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 13px 14px;
+    border-radius: 10px;
+    color: var(--muted);
+    cursor: pointer;
+    margin-bottom: 7px;
+    font-size: 13px;
+    transition: .2s;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: linear-gradient(90deg,#385bd533,#385bd30b);
+    color: #a9c1ff;
+    border: 1px solid #658cff25;
+}
+
+.nav-icon {
+    font-size: 17px;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    background: #172238;
+    border: 1px solid var(--border);
+    padding: 16px;
+    border-radius: 13px;
+}
+
+.sidebar-bottom p {
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.7;
+    margin-top: 7px;
+}
+
+.system-status {
+    color: var(--green);
+    font-size: 11px;
+    margin-top: 12px;
+}
+
+/* MAIN */
+
+.main {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    padding: 28px 45px;
+    max-width: 1600px;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 55px;
+}
+
+.breadcrumb {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.local-badge {
+    padding: 9px 14px;
+    border: 1px solid #42d99b35;
+    background: #42d99b0c;
+    color: var(--green);
+    border-radius: 30px;
+    font-size: 11px;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg,#6c8cff,#42d9e8);
+    display: grid;
+    place-items: center;
+    font-weight: bold;
+}
+
+/* HERO */
+
+.hero {
+    margin-bottom: 35px;
+}
+
+.eyebrow {
+    color: var(--cyan);
+    font-size: 10px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    margin-bottom: 17px;
+}
+
+.hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(35px,5vw,57px);
+    line-height: 1.15;
+    letter-spacing: -2px;
+    margin-bottom: 17px;
+}
+
+.gradient-text {
+    background: linear-gradient(100deg,#83a2ff,#48dbe9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.8;
+    max-width: 650px;
+}
+
+/* STATS */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 16px;
+    margin: 32px 0;
+}
+
+.stat-card {
+    background: linear-gradient(145deg,#151f33,#0e1524);
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 20px;
+    transition: .3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-4px);
+    border-color: #668aff55;
+}
+
+.stat-label {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.stat-number {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 30px;
+    margin-top: 12px;
+}
+
+/* RESEARCH */
+
+.section-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 19px;
+    margin-bottom: 17px;
+}
+
+.research-panel {
+    background: linear-gradient(145deg,#141e31e8,#101727e8);
+    border: 1px solid #7897ff25;
+    border-radius: 19px;
+    padding: 28px;
+    box-shadow: 0 15px 60px #00000025;
+}
+
+.input-label {
+    color: #b8c5df;
+    font-size: 12px;
+    margin-bottom: 13px;
+    display: block;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background: #080e1b;
+    border: 1px solid #344463;
+    border-radius: 12px;
+    padding: 5px;
+    transition: .3s;
+}
+
+.input-wrapper:focus-within {
+    border-color: var(--blue);
+    box-shadow: 0 0 25px #6c8cff18;
+}
+
+.input-wrapper input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 15px;
+    flex: 1;
+    min-width: 0;
+    font-size: 14px;
+}
+
+.input-wrapper input::placeholder {
+    color: #64718a;
+}
+
+.research-button {
+    background: linear-gradient(110deg,#5379ed,#397fd8);
+    color: white;
+    border: none;
+    border-radius: 9px;
+    padding: 14px 22px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: .3s;
+    white-space: nowrap;
+}
+
+.research-button:hover {
+    box-shadow: 0 0 25px #638aff65;
+    transform: translateY(-2px);
+}
+
+.research-button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 20px;
+}
+
+.suggestion {
+    border: 1px solid var(--border);
+    padding: 8px 12px;
+    border-radius: 30px;
+    color: var(--muted);
+    font-size: 10px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.suggestion:hover {
+    color: #a9c1ff;
+    border-color: var(--blue);
+}
+
+/* PROGRESS */
+
+.progress-panel {
+    display: none;
+    margin-top: 24px;
+    background: #0b1220;
+    border: 1px solid var(--border);
+    border-radius: 13px;
+    padding: 23px;
+}
+
+.progress-heading {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    margin-bottom: 20px;
+}
+
+.progress-heading span:last-child {
+    color: var(--cyan);
+}
+
+.progress-track {
+    height: 4px;
+    background: #26344e;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg,#6c8cff,#42d9e8);
+    transition: width .6s;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.step {
+    color: #596781;
+    font-size: 10px;
+    line-height: 1.7;
+}
+
+.step.active {
+    color: var(--cyan);
+}
+
+.step.done {
+    color: var(--green);
+}
+
+.message {
+    color: var(--muted);
+    font-size: 12px;
+    margin-top: 15px;
+}
+
+/* RESULTS */
+
+.results {
+    display: none;
+    margin-top: 35px;
+}
+
+.result-card {
+    background: #111a2b;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 24px;
+    margin-bottom: 18px;
+}
+
+.result-card h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    margin-bottom: 19px;
+}
+
+.analysis {
+    color: #c1cbe0;
+    font-size: 13px;
+    line-height: 1.9;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.source-list {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 12px;
+}
+
+.source-card {
+    padding: 15px;
+    background: #0a1220;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    text-decoration: none;
+    color: #a9c1ff;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+    transition: .2s;
+}
+
+.source-card:hover {
+    border-color: var(--blue);
+    transform: translateY(-2px);
+}
+
+.pdf-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.pdf-info {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.download-button {
+    display: inline-block;
+    background: #42d99b17;
+    color: var(--green);
+    border: 1px solid #42d99b50;
+    padding: 12px 18px;
+    border-radius: 9px;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+/* REPORT LIBRARY */
+
+.library {
+    display: none;
+    margin-top: 35px;
+}
+
+.report-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    background: #111a2b;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.report-item a {
+    color: var(--cyan);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* HISTORY */
+
+.history {
+    display: none;
+    margin-top: 35px;
+}
+
+.history-item {
+    padding: 16px;
+    background: #111a2b;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 12px;
+    font-size: 12px;
+}
+
+.history-item small {
+    display: block;
+    color: var(--muted);
+    margin-top: 7px;
+}
+
+/* FOOTER */
+
+footer {
+    color: #58657d;
+    font-size: 10px;
+    text-align: center;
+    padding: 45px 0 20px;
+    letter-spacing: 1px;
+}
+
+.empty {
+    color: var(--muted);
+    font-size: 13px;
+    padding: 20px 0;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px) {
+
+    .sidebar {
+        width: 75px;
+        padding: 25px 10px;
+    }
+
+    .brand {
+        padding: 0;
+        justify-content: center;
+    }
+
+    .brand h2,
+    .nav-label,
+    .nav-item span:not(.nav-icon),
+    .sidebar-bottom {
+        display: none;
+    }
+
+    .nav-item {
+        justify-content: center;
+        padding: 15px 5px;
+    }
+
+    .main {
+        margin-left: 75px;
+        width: calc(100% - 75px);
+        padding: 25px;
+    }
+
+}
+
+@media(max-width:600px) {
+
+    .main {
+        padding: 20px 15px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .input-wrapper {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 10px;
+    }
+
+    .research-button {
+        width: 100%;
+    }
+
+    .source-list {
+        grid-template-columns: 1fr;
+    }
+
+    .steps {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .hero h1 {
+        letter-spacing: -1px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">âœ¦</div>
+            <div>
+                <h2>QELVORI</h2>
+                <small>RESEARCH INTELLIGENCE</small>
+            </div>
+        </div>
+
+        <div class="nav-label">WORKSPACE</div>
+
+        <div class="nav-item active" onclick="showPage('dashboard',this)">
+            <span class="nav-icon">âŒ‚</span>
+            <span>Dashboard</span>
+        </div>
+
+        <div class="nav-item" onclick="showPage('history',this)">
+            <span class="nav-icon">â—·</span>
+            <span>Research History</span>
+        </div>
+
+        <div class="nav-item" onclick="showPage('library',this)">
+            <span class="nav-icon">â–¤</span>
+            <span>Report Library</span>
+        </div>
+
+        <div class="sidebar-bottom">
+            <strong>AI ENGINE</strong>
+            <p>Powered by local Qwen3:4B intelligence.</p>
+            <div class="system-status">â— SYSTEM READY</div>
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <div class="breadcrumb">
+                QELVORI / <span id="pageName">Dashboard</span>
+            </div>
+
+            <div class="top-right">
+                <div class="local-badge">â— LOCAL AI ACTIVE</div>
+                <div class="avatar">N</div>
+            </div>
+
+        </div>
+
+
+        <!-- DASHBOARD -->
+
+        <section id="dashboard">
+
+            <div class="hero">
+
+                <div class="eyebrow">âœ¦ INTELLIGENCE BEYOND SEARCH</div>
+
+                <h1>
+                    Discover more.<br>
+                    <span class="gradient-text">Understand everything.</span>
+                </h1>
+
+                <p>
+                    Your autonomous research intelligence system.
+                    Explore topics, collect information from the web,
+                    analyze findings with AI and generate research reports.
+                </p>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+
+            <div class="stats">
+
+                <div class="stat-card">
+                    <div class="stat-label">COMPLETED RESEARCH</div>
+                    <div class="stat-number" id="totalResearch">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-label">SOURCES COLLECTED</div>
+                    <div class="stat-number" id="totalSources">0</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-label">GENERATED REPORTS</div>
+                    <div class="stat-number" id="totalReports">0</div>
+                </div>
+
+            </div>
+
+
+            <!-- RESEARCH INPUT -->
+
+            <div class="section-title">Start a new investigation</div>
+
+            <div class="research-panel">
+
+                <label class="input-label" for="topic">
+                    WHAT WOULD YOU LIKE TO RESEARCH?
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        type="text"
+                        id="topic"
+                        placeholder="Describe your research topic..."
+                    >
+
+                    <button
+                        class="research-button"
+                        id="researchButton"
+                        onclick="startResearch()"
+                    >
+                        âœ¦ Start Research
+                    </button>
+
+                </div>
+
+                <div class="suggestions">
+
+                    <div class="suggestion" onclick="setTopic('Artificial Intelligence in Autonomous Vehicles')">
+                        Autonomous Vehicles
+                    </div>
+
+                    <div class="suggestion" onclick="setTopic('Quantum Computing and its Future Applications')">
+                        Quantum Computing
+                    </div>
+
+                    <div class="suggestion" onclick="setTopic('AI in Semiconductor Chip Design')">
+                        AI + Semiconductors
+                    </div>
+
+                    <div class="suggestion" onclick="setTopic('Renewable Energy Technologies')">
+                        Renewable Energy
+                    </div>
+
+                </div>
+
+
+                <!-- PROGRESS -->
+
+                <div class="progress-panel" id="progressPanel">
+
+                    <div class="progress-heading">
+                        <strong id="progressTitle">Initializing research...</strong>
+                        <span id="progressPercent">0%</span>
+                    </div>
+
+                    <div class="progress-track">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+
+                    <div class="steps">
+
+                        <div class="step" id="step1">01<br>Web Search</div>
+
+                        <div class="step" id="step2">02<br>Content Extraction</div>
+
+                        <div class="step" id="step3">03<br>AI Analysis</div>
+
+                        <div class="step" id="step4">04<br>PDF Generation</div>
+
+                    </div>
+
+                    <div class="message" id="message">
+                        Please wait while the research agent works.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- RESULTS -->
+
+            <div class="results" id="results">
+
+                <div class="section-title">Research results</div>
+
+                <div class="result-card">
+
+                    <h2>âœ¦ AI Research Analysis</h2>
+
+                    <div class="analysis" id="analysis"></div>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <h2>â—ˆ Research Sources</h2>
+
+                    <div class="source-list" id="sources"></div>
+
+                </div>
+
+
+                <div class="result-card">
+
+                    <h2>â–¤ Research Report</h2>
+
+                    <div class="pdf-box">
+
+                        <div class="pdf-info" id="reportName"></div>
+
+                        <a
+                            class="download-button"
+                            id="downloadButton"
+                            href="#"
+                        >
+                            â†“ Download PDF
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- HISTORY -->
+
+        <section class="history" id="history">
+
+            <div class="section-title">Research History</div>
+
+            <div id="historyList"></div>
+
+        </section>
+
+
+        <!-- LIBRARY -->
+
+        <section class="library" id="library">
+
+            <div class="section-title">Your Report Library</div>
+
+            <div id="reportList"></div>
+
+        </section>
+
+
+        <footer>
+            QELVORI RESEARCH INTELLIGENCE Â· POWERED BY LOCAL AI Â· VERSION 2.0
+        </footer>
+
+    </main>
+
+</div>
+
+
+<script>
+
+let researchTimer = null;
+let researchStep = 0;
+
+function setTopic(value) {
+    document.getElementById("topic").value = value;
+}
+
+function showPage(page, element) {
+
+    document.getElementById("dashboard").style.display =
+        page === "dashboard" ? "block" : "none";
+
+    document.getElementById("history").style.display =
+        page === "history" ? "block" : "none";
+
+    document.getElementById("library").style.display =
+        page === "library" ? "block" : "none";
+
+    document.getElementById("pageName").textContent =
+        page.charAt(0).toUpperCase() + page.slice(1);
+
+    document.querySelectorAll(".nav-item").forEach(item => {
+        item.classList.remove("active");
+    });
+
+    if (element) {
+        element.classList.add("active");
+    }
+
+    if (page === "history") {
+        loadHistory();
+    }
+
+    if (page === "library") {
+        loadReports();
+    }
+
+}
+
+function updateProgress(step) {
+
+    const labels = [
+        "Searching the web...",
+        "Extracting webpage information...",
+        "AI is analyzing collected research...",
+        "Generating your PDF report..."
+    ];
+
+    const percentages = [15, 40, 72, 90];
+
+    researchStep = step;
+
+    document.getElementById("progressTitle").textContent =
+        labels[step];
+
+    document.getElementById("progressPercent").textContent =
+        percentages[step] + "%";
+
+    document.getElementById("progressFill").style.width =
+        percentages[step] + "%";
+
+    for (let i = 1; i <= 4; i++) {
+
+        const element = document.getElementById("step" + i);
+
+        element.className = "step";
+
+        if (i - 1 < step) {
+            element.classList.add("done");
+        }
+
+        if (i - 1 === step) {
+            element.classList.add("active");
+        }
+
+    }
+
+}
+
+async function startResearch() {
+
+    const topic = document.getElementById("topic").value.trim();
+    const button = document.getElementById("researchButton");
+    const panel = document.getElementById("progressPanel");
+    const results = document.getElementById("results");
+
+    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+    if (topic.length < 3) {
+        alert("Please enter a research topic with at least 3 characters.");
+        return;
+    }
+
+    button.disabled = true;
+    button.textContent = "Researching...";
+
+    panel.style.display = "block";
+    results.style.display = "none";
+
+    const progressFill = document.getElementById("progressFill");
+    const progressPercent = document.getElementById("progressPercent");
+    const progressTitle = document.getElementById("progressTitle");
+    const message = document.getElementById("message");
+
+    function updateResearchProgress(job) {
+
+        const progress = Number(job.progress || 0);
+
+        progressFill.style.width = progress + "%";
+        progressPercent.textContent = progress + "%";
+
+        progressTitle.textContent =
+            job.stage === "completed"
+                ? "Research completed successfully!"
+                : "QELVORI is researching...";
+
+        message.textContent = job.message || "Processing...";
+
+        const stageSteps = {
+            searching: 1,
+            extracting: 1,
+            analyzing: 2,
+            verifying: 3,
+            generating: 4,
+            completed: 4
+        };
+
+        const activeStep = stageSteps[job.stage] || 1;
+
+        for (let i = 1; i <= 4; i++) {
+
+            const step = document.getElementById("step" + i);
+
+            if (job.stage === "completed" || i < activeStep) {
+                step.className = "step done";
+            }
+            else if (i === activeStep) {
+                step.className = "step active";
+            }
+            else {
+                step.className = "step";
+            }
+        }
+    }
+
+    try {
+
+        // STEP 1: Start background research
+
+        progressTitle.textContent = "Starting research...";
+        message.textContent = "Preparing your research agent...";
+
+        const response = await fetch("/api/research", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                topic: topic
+            })
+
+        });
+
+        const startData = await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                startData.detail || "Could not start research."
+            );
+        }
+
+        if (!startData.job_id) {
+            throw new Error("Backend did not return a research job ID.");
+        }
+
+        const jobId = startData.job_id;
+
+        console.log("QELVORI Research Job:", jobId);
+
+        // STEP 2: Monitor background research
+
+        let job;
+        let attempts = 0;
+
+        while (attempts < 1200) {
+
+            attempts++;
+
+            await sleep(3000);
+
+            const statusResponse = await fetch(
+                `/api/research/${encodeURIComponent(jobId)}`
+            );
+
+            if (!statusResponse.ok) {
+                throw new Error(
+                    "Could not retrieve research progress. HTTP " +
+                    statusResponse.status
+                );
+            }
+
+            job = await statusResponse.json();
+
+            updateResearchProgress(job);
+
+            console.log(
+                "QELVORI Progress:",
+                job.stage,
+                job.progress,
+                job.status
+            );
+
+            if (job.status === "completed") {
+                break;
+            }
+
+            if (job.status === "failed") {
+                throw new Error(
+                    job.message || "Research failed."
+                );
+            }
+        }
+
+        if (!job || job.status !== "completed") {
+            throw new Error("Research timed out. Please try again.");
+        }
+
+        // STEP 3: Retrieve completed research results
+
+        const data = job.result;
+
+        if (!data || !data.success) {
+            throw new Error("Research completed without valid results.");
+        }
+
+        progressFill.style.width = "100%";
+        progressPercent.textContent = "100%";
+
+        progressTitle.textContent =
+            "Research completed successfully!";
+
+        message.textContent =
+            "Your research report is ready.";
+
+        // Display research analysis
+
+        document.getElementById("analysis").textContent =
+            data.analysis || "No analysis available.";
+
+        // Display research sources
+
+        const sourceContainer = document.getElementById("sources");
+
+        sourceContainer.replaceChildren();
+
+        (data.sources || []).forEach(source => {
+
+            const link = document.createElement("a");
+
+            link.className = "source-card";
+            link.textContent = "â†— " + source.title;
+            link.href = source.url;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+
+            sourceContainer.appendChild(link);
+
+        });
+
+        // Display PDF report
+
+        document.getElementById("reportName").textContent =
+            data.report_filename || "Research report";
+
+        document.getElementById("downloadButton").href =
+            "/api/reports/" +
+            encodeURIComponent(data.report_filename);
+
+        results.style.display = "block";
+
+        // Save research history
+
+        saveHistory({
+            topic: data.topic,
+            source_count: data.source_count,
+            report_filename: data.report_filename,
+            date: new Date().toLocaleString()
+        });
+
+        updateStats();
+
+        loadReports();
+
+    }
+
+    catch (error) {
+
+        console.error("QELVORI Research Error:", error);
+
+        progressTitle.textContent = "Research interrupted";
+
+        message.textContent = "Error: " + error.message;
+
+    }
+
+    finally {
+
+        button.disabled = false;
+        button.textContent = "âœ¦ Start Research";
+
+    }
+
+}
+
+function saveHistory(item) {
+
+    let history = JSON.parse(
+        localStorage.getItem("nexus_history") || "[]"
+    );
+
+    history.unshift(item);
+
+    localStorage.setItem(
+        "nexus_history",
+        JSON.stringify(history.slice(0, 50))
+    );
+
+}
+
+
+function loadHistory() {
+
+    const history = JSON.parse(
+        localStorage.getItem("nexus_history") || "[]"
+    );
+
+    const container = document.getElementById("historyList");
+
+    container.replaceChildren();
+
+    if (history.length === 0) {
+
+        container.textContent = "No research history yet.";
+
+        container.className = "empty";
+
+        return;
+
+    }
+
+    container.className = "";
+
+    history.forEach(item => {
+
+        const card = document.createElement("div");
+
+        card.className = "history-item";
+
+        const title = document.createElement("strong");
+        title.textContent = item.topic;
+
+        const details = document.createElement("small");
+
+        details.textContent =
+            item.date + " Â· " + item.source_count + " sources";
+
+        card.appendChild(title);
+        card.appendChild(details);
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+async function loadReports() {
+
+    const container = document.getElementById("reportList");
+
+    container.textContent = "Loading reports...";
+
+    try {
+
+        const response = await fetch("/api/reports");
+
+        if (!response.ok) {
+            throw new Error("Could not load reports.");
+        }
+
+        const data = await response.json();
+
+        container.replaceChildren();
+
+        if (data.reports.length === 0) {
+
+            container.textContent = "No PDF reports generated yet.";
+
+            container.className = "empty";
+
+            return;
+
+        }
+
+        container.className = "";
+
+        data.reports.forEach(filename => {
+
+            const item = document.createElement("div");
+
+            item.className = "report-item";
+
+            const name = document.createElement("span");
+            name.textContent = "â–¤ " + filename;
+
+            const link = document.createElement("a");
+
+            link.textContent = "Download â†“";
+
+            link.href =
+                "/api/reports/" + encodeURIComponent(filename);
+
+            item.appendChild(name);
+            item.appendChild(link);
+
+            container.appendChild(item);
+
+        });
+
+    }
+
+    catch (error) {
+
+        container.textContent = error.message;
+
+    }
+
+}
+
+
+function updateStats() {
+
+    const history = JSON.parse(
+        localStorage.getItem("nexus_history") || "[]"
+    );
+
+    const sourceTotal = history.reduce(
+        (total, item) => total + Number(item.source_count || 0),
+        0
+    );
+
+    document.getElementById("totalResearch").textContent =
+        history.length;
+
+    document.getElementById("totalSources").textContent =
+        sourceTotal;
+
+    document.getElementById("totalReports").textContent =
+        history.length;
+
+}
+
+
+updateStats();
+
+</script>
+
+</body>
+</html>
