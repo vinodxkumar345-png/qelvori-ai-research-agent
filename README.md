@@ -37,34 +37,37 @@ QELVORI is built with Python and FastAPI. It uses locally hosted AI models throu
 | Testing | Pytest |
 
 ## Architecture
+## System Architecture
 
-```text
-QELVORI
-│
-├── agents/
-│   └── research_agent.py
-│
-├── core/
-│   ├── ai_analyzer.py
-│   ├── evidence_verifier.py
-│   └── report_generator.py
-│
-├── tools/
-│   ├── search_tool.py
-│   └── content_extractor.py
-│
-├── static/
-│   └── index.html
-│
-├── tests/
-│   ├── pytest.ini
-│   └── test_api.py
-│
-├── main.py
-├── requirements.txt
-└── README.md
-```
+```mermaid
+flowchart TD
+    A["User"] --> B["QELVORI Web Dashboard"]
+    B --> C["FastAPI Backend"]
 
+    C --> D["Research Agent"]
+
+    D --> E["Search Tool"]
+    D --> F["Content Extractor"]
+
+    E --> G["Research Sources"]
+    G --> F
+
+    F --> H["AI Analyzer"]
+    H --> I["Ollama - Qwen3:4B"]
+
+    H --> J["Evidence Verifier"]
+    J --> K["Verified Research Findings"]
+
+    K --> L["Report Generator"]
+    L --> M["PDF Research Report"]
+
+    M --> B
+
+    style A fill:#172554,stroke:#3B82F6,color:#fff
+    style D fill:#172554,stroke:#3B82F6,color:#fff
+    style H fill:#164E63,stroke:#06B6D4,color:#fff
+    style J fill:#164E63,stroke:#06B6D4,color:#fff
+    style L fill:#172554,stroke:#3B82F6,color:#fff
 ## Requirements
 
 - Python 3.10 or later
